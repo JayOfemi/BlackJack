@@ -52,11 +52,11 @@ contract BlackJack {
     
     string private _dMsg;
     
-     ///---event logging---///
+    ///-----------event logging-------------///
     event PlayerDeposit(address Contract, address Player, uint256 Amount);
     event PlayerWithdrawal(address Contract, address Player, uint256 Amount);
     
-    ///---Modifiers---///
+    ///--------Modifiers----------///
     //make sure address is Valid
     modifier isValidAddr() {
         require(msg.sender != 0x0, "Invalid Address.");
@@ -83,7 +83,7 @@ contract BlackJack {
     
     
     
-    //constructor
+    ///******constructor********///
     constructor() public {
         _roundInProgress = false;
         _rngCounter = 1;
@@ -93,14 +93,14 @@ contract BlackJack {
     }
     
     
-    //fallback - Unused
+    ///*********fallback - Unused***********///
     function () isValidAddr newRound public payable {
         //Players must use PayContract function to pay
         revert("Please use PayContract Function to pay.");
     }
     
     
-    //pay the contract
+    ///************pay the contract*************///
     function payContract() isValidAddr newRound public payable returns (bool) {
         
         //make sure contract cannot accept more than ether limit
@@ -118,8 +118,8 @@ contract BlackJack {
     }
     
     
-    
-    /* Generates a random number from 0 to 13 based on the last block hash */
+    ///*********************RNG************************///
+    //Generates a random number from 0 to 13 based on the last block hash
     //11 = Joker, 12 = Queen, 13 = King, Each worth 10 points
     //counter is added to "now" so that RNG doesnt produce same number if called twice in the same second
     function RNG() internal returns (uint randomNumber) {
@@ -141,23 +141,18 @@ contract BlackJack {
     
     
     
-    /// Game Interface ///
+    ///-------------Game Interface-----------------///
     
-    //Place a bet - Limits: 1 wei - 1000 wei
+    ///***************Place a bet**************///
+    //Limits: 1 wei - 1000 wei
     function placeBet(uint256 bet) isValidAddr newRound public returns (string) {
         uint256 betEth;
         
         //only reset player's bet if not a double down or split or insurance bet
         if(_dDown == false && _split == false && _insurance == false)
             _pBet = 0;
-            
-        // //convert bet to ether unit for testing
-        // betEth = bet * 1000000000000000000;
         
         betEth = bet;
-        
-        // //make sure bet is within Limits
-        // require(betEth >= 1 ether && betEth <= 10 ether, "Bet Limits are 1 Ether - 10 Ether.");
         
         //make sure bet is within Limits
         require(betEth >= 1 wei && betEth <= 1000 wei, "Bet Limits are 1 wei - 1000 wei.");
@@ -190,7 +185,7 @@ contract BlackJack {
         }
     }
     
-    
+    ///***********Cash Out**************///
     function cashOut() isValidAddr isPlayer newRound 
         public 
         returns (bool) {
@@ -209,7 +204,7 @@ contract BlackJack {
     }
     
     
-    //deal cards
+    ///************deal cards**************///
     function deal() internal returns (string) {
         
         //clear previous hand
@@ -351,7 +346,7 @@ contract BlackJack {
     }
     
     
-    ///****************stand**********************///
+    ///*******************stand***********************///
     function stand() isValidAddr isPlayer playerTurn public returns (string) {
         
         //handle double down, Insurance and Splitting
@@ -478,8 +473,9 @@ contract BlackJack {
     }
     
     
-    ///****************Double Down******************///
-    function doubleDown() isValidAddr isPlayer playerTurn public returns (string) {
+    ///*********************Double Down*************************///
+    function doubleDown() isValidAddr isPlayer playerTurn 
+        public returns (string) {
         //make sure player can double down
         require(_dDown == true, "Player cannot Double Down right now.");
         
@@ -522,7 +518,7 @@ contract BlackJack {
     }
     
     
-    ///****************Split******************///
+    ///************************Split*****************************///
     function split() isValidAddr isPlayer playerTurn public returns (string) {
         //make sure player can double down
         require(_split == true, "Player cannot Split right now.");
@@ -549,10 +545,7 @@ contract BlackJack {
         }
         
         //place same amount as original Bet
-        uint256 bet = _pBet; 
-        
-        // //convert bet back to wei for testing
-        // bet /= 1000000000000000000;
+        uint256 bet = _pBet;
         
         //pause game to place Bet
         _roundInProgress = false;
@@ -597,15 +590,13 @@ contract BlackJack {
     
     
     ///********************Insurance*********************///
-    function insurance() isValidAddr isPlayer playerTurn public returns (string) {
+    function insurance() isValidAddr isPlayer playerTurn 
+        public returns (string) {
         //make sure player can have insurance
         require(_insurance == true, "Player cannot have insurance right now.");
         
         //place half amount as original Bet
         uint256 bet = _pBet/2; 
-        
-        // //convert bet back to wei for testing
-        // bet /= 1000000000000000000;
         
         //insure
         _insured = true;
@@ -619,6 +610,7 @@ contract BlackJack {
     }
     
 
+    ///***************dDownInsSplit***************///
     //handle double down, Insurance and split chances
     //for hit and stand functions
     function dDownInsSplit() internal {
@@ -653,6 +645,7 @@ contract BlackJack {
     }
     
     
+    ///***************hitWin*****************///
     //handle checking for winner for hit function
     function hitWin(uint256 _cTotal) internal {
         
@@ -705,7 +698,7 @@ contract BlackJack {
     }
     
     
-    //show the table
+    ///********************show the table***********************///
     function displayTable() 
         public 
         view 
