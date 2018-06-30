@@ -81,13 +81,6 @@ contract BlackJack {
         _;
     }
     
-    //User must update display before Hitting or Standing
-    modifier updateDisplay() {
-        require(_displayUpdate == true, "Please update display before proceeding.");
-        _;
-    }
-    
-    
     
     //constructor
     constructor() public {
