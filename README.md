@@ -2,7 +2,7 @@
 A Solidity smart contract game of Blackjack that can be deployed on the blockchain.
 
 
-This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix (www.remix.ethereum.org). Remix Documentation: https://remix.readthedocs.io/en/latest/
+This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix (https://remix.ethereum.org). Remix Documentation: https://remix.readthedocs.io/en/latest/
 
 Copy the BlackJack.sol code into the IDE.
 
