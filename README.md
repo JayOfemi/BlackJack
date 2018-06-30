@@ -4,7 +4,13 @@ A Solidity smart contract game of Blackjack that can be deployed on the blockcha
 
 This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix (https://remix.ethereum.org). Remix Documentation: https://remix.readthedocs.io/en/latest/
 
-Copy the BlackJack.sol code into the IDE.
+Copy the BlackJack.sol code into the IDE (might need to replace default ballot.sol).
+
+Under the "Settings" tab, make sure the Compiler Version matches the contract (0.4.24).
+
+Under the "Compile" tab, click "Compile" and check the Auto Compile box.
+
+Under the "Run" tab, Ensure "Environment" is Javascript VM.
 
 Increase Gas Limit to 5000000 or higher.
 
