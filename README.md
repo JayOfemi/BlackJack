@@ -1,5 +1,5 @@
-# BlackJack
-A smart contract game of Blackjack that can be deployed on the blockchain.
+# BlackJack.sol
+A Solidity smart contract game of Blackjack that can be deployed on the blockchain.
 
 
 This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix (www.remix.ethereum.org).
