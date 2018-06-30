@@ -42,3 +42,5 @@ player wins the split and receives the bet on both cards.
 
 Player can either double down or split, player cannot split
 then double down and vice versa.
+
+DISCLOSURE: This contract uses a psuedo-random number generator that can be influenced by miners. Be careful when using this or a contract like this in a Casino Dapp for example, where real money is used. This contract protects against security issues like Re-Entrancy, and make certain that only the player can use any of the functions in the game's interface. Although, the contract has not been tested thoroughly enough to guarantee protection against other kinds of attacks. This repository is open to the public. Feel free to Fork and pull requests to help improve the code. 
