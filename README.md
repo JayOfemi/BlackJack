@@ -22,8 +22,11 @@ Player can then place a bet to begin the game (1 wei < bet < 1000 wei).
 RULES:
 
 This contract follows the regular rules of BlackJack: https://www.bicyclecards.com/how-to-play/blackjack/
+
   -Player hits/stands to beat dealer's hand by getting as close to 21 as possible.
+  
   -Reno Rule: Player can only double down on 9, 10, or 11.
+  
   -Split Under 21 Rule
 
 Split Under 21 Rule:
