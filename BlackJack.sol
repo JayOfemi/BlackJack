@@ -46,7 +46,7 @@ contract BlackJack {
     uint256 private _pSplitTotal;
     uint256 private _dCard1;
     uint256 private _dCard2;
-    uint256 private _dNewCard;
+    uint256[2] private _dNewCard;
     uint256 private _dCardTotal;
     uint256 public _gamesPlayed;
     
@@ -65,7 +65,7 @@ contract BlackJack {
     
     //make sure address is Player
     modifier isPlayer() {
-        require(msg.sender == _player, "Player's turn.");
+        require(msg.sender == _player, "Only Player can use this function.");
         _;
     }
     
@@ -80,6 +80,7 @@ contract BlackJack {
         require(_roundInProgress == false, "This Function cannot be used while round is in progress.");
         _;
     }
+    
     
     
     //constructor
@@ -219,7 +220,8 @@ contract BlackJack {
         _pSplitTotal = 0;
         _dCard1 = 0;
         _dCard2 = 0;
-        _dNewCard = 0;
+        _dNewCard[0] = 0;
+        _dNewCard[1] = 0;
         _dCardTotal = 0;
         _dDown = false;
         _split = false;
@@ -368,17 +370,20 @@ contract BlackJack {
             //update Dealer's card Total
             _dCardTotal = _dCard1 + _dCard2;
         
-        
+            uint256 _dCardIndex = 0;        
             //Dealer must Hit to 16 and Stand on all 17's
             while(_dCardTotal < 17) {
-                _dNewCard = RNG();
+                _dNewCard[_dCardIndex] = RNG();
                 //Ace
-                if(_dNewCard == 1 && _dCardTotal < 11) {
+                if(_dNewCard[_dCardIndex] == 1 && _dCardTotal < 11) {
                     //Ace = 11
-                    _dNewCard = 11;
+                    _dNewCard[_dCardIndex] = 11;
                 }
                 
-                _dCardTotal += _dNewCard;
+                _dCardTotal += _dNewCard[_dCardIndex];
+                _dCardIndex += 1;
+                if(_dCardIndex > 1)
+                    _dCardIndex = 0;
             }
         }
         
@@ -705,12 +710,13 @@ contract BlackJack {
         public 
         view 
         returns (string Message, uint256 PlayerBet, uint256 PlayerCard1, uint256 PlayerCard2, 
-                    uint256 PlayerNewCard, uint256 PlayerCardTotal, uint256 PlayerSplitTotal, bool PlayerInsured, uint256 DealerCard1, 
-                    uint256 DealerCard2, uint256 DealerNewCard, uint256 DealerCardTotal, uint256 Pot) {
+                    uint256 PlayerNewCard, uint256 PlayerCardTotal, uint256 PlayerSplitTotal, 
+                    uint256 DealerCard1, uint256 DealerCard2, uint256 DealerNewCard1, 
+                    uint256 DealerNewCard2, uint256 DealerCardTotal, uint256 Pot) {
                         
             
-        return (_dMsg, _pBet, _pCard1, _pCard2, _pNewCard, _pCardTotal, _pSplitTotal, _insured, 
-            _dCard1, _dCard2, _dNewCard, _dCardTotal, _safeBalance);
+        return (_dMsg, _pBet, _pCard1, _pCard2, _pNewCard, _pCardTotal, _pSplitTotal, 
+            _dCard1, _dCard2, _dNewCard[0], _dNewCard[1], _dCardTotal, _safeBalance);
     }
     
 }
