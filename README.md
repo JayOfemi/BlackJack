@@ -31,8 +31,8 @@ Modified split - If either of the player's hand in a split beats dealer,
 player wins bet on both hands automatically.
 But if Player busts on either deck, Dealer wins bet on both decks.
 
-If player's first hand has a standoff with dealer, player's other hand
-must beat dealer, otherwise dealer wins.
+On a split hand, If player's first hand has a standoff with dealer, 
+player's other hand must beat dealer, otherwise dealer wins.
 If player's second hand stands off with dealer, player gets original bet back.
 
 On a split hand, the Player's split total is updated first, then when player stands, 
