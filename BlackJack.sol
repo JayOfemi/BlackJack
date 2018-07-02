@@ -103,6 +103,10 @@ contract BlackJack {
     ///************pay the contract*************///
     function payContract() isValidAddr newRound public payable returns (bool) {
         
+        //if contract is in use, make sure it is player paying
+        if(_safeBalance > 0)
+            require(_player == msg.sender, "Only Player can pay this contract.");
+        
         //make sure contract cannot accept more than ether limit
         require((_safeBalance + msg.value) <= _ethLimit, "Too much Ether!");
         
@@ -145,7 +149,7 @@ contract BlackJack {
     
     ///***************Place a bet**************///
     //Limits: 1 wei - 1000 wei
-    function placeBet(uint256 bet) isValidAddr newRound public returns (string) {
+    function placeBet(uint256 bet) isValidAddr isPlayer newRound public returns (string) {
         uint256 betEth;
         
         //only reset player's bet if not a double down or split or insurance bet
