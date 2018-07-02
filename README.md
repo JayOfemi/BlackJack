@@ -55,6 +55,6 @@ player wins the split and receives the bet on both cards.
 Player can either double down or split, player cannot split
 then double down and vice versa.
 
-If a button is clicked and the contract does not respond, check the Terminal (output) section of the window, where the contract will provide a reason.
+If a button is clicked and the contract does not respond, check the Terminal/Output section (bottom pane) of the window, where the contract will provide a reason.
 
 DISCLOSURE: This contract uses a psuedo-random number generator that can be influenced by miners. Be careful when using this or a contract like this in a Casino Dapp for example, where real money is used. This contract protects against security issues like Re-Entrancy, and makes certain that only the player can use any of the functions in the game's interface. The contract has not been tested thoroughly enough to guarantee protection against other kinds of attacks. This repository is open to the public. Feel free to Fork and pull requests to help improve the code.
