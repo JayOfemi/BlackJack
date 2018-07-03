@@ -1,4 +1,6 @@
 # BlackJack.sol
+PLEASE READ BELOW BEFORE PLAYING THE GAME.
+
 A Solidity smart contract game of Blackjack that can be deployed on the blockchain.
 
 
