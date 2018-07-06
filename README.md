@@ -9,9 +9,6 @@ This contract can be tested on any Solidity IDE, but the one I used to create th
 ***Firefox browser recommended.
 
 Copy the BlackJack.sol code into the IDE (might need to replace default ballot.sol).
-  If you replaced the ballot.sol code, you must now rename the file.
-  Click "Browser" on the left pane, Right click "ballot.sol" and rename it to "BlackJack.sol".
-  Otherwise, click the "+" (top left) to create a new file titled "BlackJack.sol" and paste code there.
  
 Under the "Settings" tab, make sure the Compiler Version matches the contract (0.4.24).
 
