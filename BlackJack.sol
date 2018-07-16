@@ -35,6 +35,7 @@ contract BlackJack {
     
     uint256 private _ethLimit = 1000000 wei;
     uint256 private _safeBalance;
+    uint256 private _origBalance;
     uint256 private _splitCount;
     uint256 private _rngCounter;
     uint256 private _randNum;
@@ -101,7 +102,7 @@ contract BlackJack {
     
     
     ///************pay the contract*************///
-    function payContract() isValidAddr newRound public payable returns (bool) {
+    function payContract() isValidAddr newRound public payable returns (string) {
         
         //if contract is in use, make sure it is player paying
         if(_safeBalance > 0)
@@ -111,14 +112,17 @@ contract BlackJack {
         require((_safeBalance + msg.value) <= _ethLimit, "Too much Ether!");
         
         _safeBalance += msg.value;
+        _origBalance += msg.value;
         
         //Register player's address
         _player = msg.sender;
         
         //log event    
         emit PlayerDeposit(address(this), msg.sender, msg.value);
+        
+        _dMsg = "Contract Paid.";
             
-        return true;
+        return _dMsg;
     }
     
     
@@ -189,22 +193,30 @@ contract BlackJack {
         }
     }
     
+    
     ///***********Cash Out**************///
     function cashOut() isValidAddr isPlayer newRound 
         public 
-        returns (bool) {
-        //make sure there is enough to cash out
-        require(_safeBalance <= address(this).balance, "Player's balance is higher than contract's balance.");
+        returns (string) {
+        
+        uint256 tempBalance = 0;
+        //if player lost money
+        if(_safeBalance <= _origBalance)
+            _dMsg = "You would have lost Ether! Good thing I'm a generous smart contract. Original bet returned.";
+        else
+            _dMsg = "You are a worthy advesary! Original bet returned.";
         
         //log event
-        emit PlayerWithdrawal(this, msg.sender, _safeBalance);
+        emit PlayerWithdrawal(this, msg.sender, _origBalance);
         
         _safeBalance = 0;
+        tempBalance = _origBalance;
+        _origBalance = 0;
         
         //transfer funds
-        address(msg.sender).transfer(_safeBalance);
+        address(msg.sender).transfer(tempBalance);
         
-        return true;
+        return _dMsg;
     }
     
     
