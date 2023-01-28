@@ -1,61 +1,52 @@
 # BlackJack.sol
-PLEASE READ BELOW BEFORE PLAYING THE GAME.
 
 A Solidity smart contract game of Blackjack that can be deployed on the blockchain.
 
+PLEASE READ BELOW BEFORE PLAYING THE GAME OR USING THIS CONTRACT.
 
 This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix (https://remix.ethereum.org). Remix Documentation: https://remix.readthedocs.io/en/latest/
 
-***Firefox browser recommended.
+In the "Compler" tab, make sure the Compiler Version matches the contract (0.8.12 or greater), then click "Compile".
 
-Copy the BlackJack.sol code into the IDE (might need to replace default ballot.sol).
- 
-Under the "Settings" tab, make sure the Compiler Version matches the contract (0.4.24).
+NOTE: If not deployed on a testnet or mainnet, a local blockchain is needed to generate the random numbers used in this contract. Consider using Hardhat to deploy a local blockchain for testing: https://docs.openzeppelin.com/learn/deploying-and-interacting.
 
-Under the "Compile" tab, click "Compile" and check the Auto Compile box.
-
-Under the "Run" tab, Ensure "Environment" is Javascript VM.
-
-Increase Gas Limit to 5000000 or higher.
+In the "Deploy" tab, ensure "Environment" is set to Hardhat Provider, or any other testing environment you are using, if available.
 
 Deploy the contract.
 
-Type a number between 1 and 1000000 wei in the "Value" field and click the "payContract" button.
+Enter between 1000 GWei and 10 Ether in the "Value" field and click the "StartNewGame" button in the contract.
 
-Once contract is paid, your address is registered as the player
+Once a game is started, the invoking address is registered as the player.
 
-NOTE: PLAYER MUST CLICK ON THE "DISPLAYTABLE" BUTTON AFTER EVERY MOVE TO REFRESH THE DISPLAY
+Player can then place a bet to begin the game (100 GWei < bet < 1 Ether).
 
-Player can then place a bet to begin the game (1 wei < bet < 1000 wei).
+NOTE: player must click "ShowTable" after each move to refresh the table info display.
 
 
 RULES:
 
 This contract follows the regular rules of BlackJack: https://www.bicyclecards.com/how-to-play/blackjack/
 
-  -Player hits/stands to beat dealer's hand by getting as close to 21 as possible.
+  * Player hits/stands to beat dealer's hand by getting as close to 21 as possible.
+
+  * Dealer must Hit on and up to 16 and Stand on 17.
   
-  -Reno Rule: Player can only double down on 9, 10, or 11.
-  
-  -Split Under 21 Rule
+  * Player can only double down on 9, 10, or 11.
 
-Split Under 21 Rule:
-Modified split - If either of the player's hand in a split beats dealer, 
-player wins bet on both hands automatically.
-But if Player busts on either deck, Dealer wins bet on both decks.
+  * Player can either double down or split, player cannot split then double down and vice versa.
 
-On a split hand, If player's first hand has a standoff with dealer, 
-player's other hand must beat dealer, otherwise dealer wins.
-If player's second hand stands off with dealer, player gets original bet back.
+  * Player cannot split then split again or double down more than once.
 
-On a split hand, the Player's split total is updated first, then when player stands, 
-the Player's card total is updated. If either of these totals beats the dealer, 
-player wins the split and receives the bet on both cards.
+  * Player who splits Aces can receive only one more additional card on a hand.
 
+  * Player can get insurance if dealer might have a BlackJack.
 
-Player can either double down or split, player cannot split
-then double down and vice versa.
+  * Aces are high unless card total is already greater than 11.
 
-If a button is clicked and the contract does not respond, check the Terminal/Output section (bottom pane) of the window, where the contract will provide a reason.
+  * Blackjack payout is 3:2.
+
+  * No surrender.
+
+If a button is clicked to call a contract function and the contract does not respond, check the Terminal/Output section (bottom pane) of the window, where the contract will provide a reason or an error.
 
 DISCLOSURE: This contract uses a psuedo-random number generator that can be influenced by miners. Be careful when using this or a contract like this in a Casino Dapp for example, where real money is used. This contract protects against security issues like Re-Entrancy, and makes certain that only the player can use any of the functions in the game's interface. The contract has not been tested thoroughly enough to guarantee protection against other kinds of attacks. This repository is open to the public. Feel free to Fork and pull requests to help improve the code.
