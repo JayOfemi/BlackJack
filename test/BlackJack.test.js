@@ -8,6 +8,8 @@ const { BN, expectEvent, expectRevert, balance, send, ether } = require('@openze
 const BlackJack = artifacts.require('BlackJack');
 
 // Start test block
+// Note: some of the tests below such as GetInsurance, Split, and DoubleDown, may fail as they assume the state of the game once started,
+//        and depending on the random numbers generated, the game may not be in the assumed state.
 describe('BlackJack', function () {
 
   context('Ensure txns revert properly', function () {
@@ -351,92 +353,5 @@ describe('BlackJack', function () {
 
     
   });
-
-  // describe('Play single round as expected', function () {
-    
-  //   // it('Balance is updated correctly on hit to bust', async function () {
-
-  //   //   const options = {value: tenEth};
-
-  //   //   const playerBalanceTracker = await balance.tracker(player1.address, 'wei');
-  //   //   await playerBalanceTracker.get();
-
-  //   //   await this.blackJack.connect(player1).StartNewGame(options);
-
-  //   //   await this.blackJack.connect(player1).PlaceBet(oneEth);
-
-  //   //   console.log("\nTable: ", await this.blackJack.connect(player1).ShowTable());
-
-  //   //   expectEvent(receipt, 'GetGameEvent', { DealerMsg: 'Player\'s Turn.' });
-
-  //   //   // await this.blackJack.connect(player1).Hit();
-  //   //   // //async function time.advanceBlock();
-  //   //   // await this.blackJack.connect(player1).Hit();
-  //   //   // await this.blackJack.connect(player1).Hit();
-  //   //   // await console.log("\nTable: ", await this.blackJack.connect(player1).ShowTable());
-  //   //   // await this.blackJack.connect(player1).Hit();
-  //   //   // await this.blackJack.connect(player1).Hit();
-  //   //   // await this.blackJack.connect(player1).Hit();
-  //   //   // await console.log("\nTable: ", await this.blackJack.connect(player1).ShowTable());
-
-  //   //   // await this.blackJack.connect(player1).CashOut();
-
-  //   //   // const contractBalance = await provider.getBalance(this.blackJack.address);
-
-  //   //   // (await playerBalanceTracker.delta()).should.be.bignumber.equal(contractBalance.toString());
-
-  //   // });
-
-
-
-  //   // it('StartNewGame emits an event', async function () {
-  //   //   const tenEth = ethers.utils.parseEther("10.0")
-  //   //   const options = {value: tenEth}
-  //   //   const receipt = await this.blackJack.connect(player1).StartNewGame(options);
-  //   //   expectEvent(receipt, 'StartNewGameEvent', {Id:'1', Player: player1, Amount: new BN('10000000000000000000') });
-  //   // });
-    
-  //   // it('Dealer is aware of new game started', async function () {
-  //   //   const options = {value: tenEth}
-  //   //   const receipt = await this.blackJack.connect(player1).StartNewGame(options)
-  //   //   const dealerMsg = await this.blackJack.connect(player1).ShowTable()
-
-  //   //   console.log("Table: ", dealerMsg)
-  //   // });
-
-
-  //   // it("Contract balance is zero", async function () {
-      
-  //   //   // Ensure contract balance is 0
-  //   //   // Note - We need to use strings to compare the 256 bit integers
-  //   //   expect((await this._blackJack.GetContractBalance()).toString()).to.equal('0');
-  //   // });
-    
-    
-  //   // Advanced Functions
-  //   // it('store emits an event', async function () {
-  //   //   const receipt = await this.box.store(value, { from: owner });
-
-  //   //   // Test that a ValueChanged event was emitted with the new value
-  //   //   expectEvent(receipt, 'ValueChanged', { value: value });
-  //   // });
-
-  //   // it('non owner cannot store a value', async function () {
-  //   //   // Test a transaction reverts
-  //   //   await expectRevert(
-  //   //     this.box.store(value, { from: other }),
-  //   //     'Ownable: caller is not the owner',
-  //   //   );
-  //   // });
-
-  //   // it('updates balances on successful transfers', async function () {
-  //   //   this.erc20.transfer(receiver, this.value, { from: sender });
-
-  //   //   // BN assertions are automatically available via chai-bn (if using Chai)
-  //   //   expect(await this.erc20.balanceOf(receiver))
-  //   //     .to.be.bignumber.equal(this.value);
-  //   // });
-
-  // });
 
 });
