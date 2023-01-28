@@ -1,0 +1,13 @@
+.idea
+.env
+.deps
+.npm
+.vscode
+
+cache/
+dist/
+build/
+build-info/
+node_modules/
+
+**/artifacts
