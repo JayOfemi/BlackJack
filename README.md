@@ -4,9 +4,9 @@ A Solidity smart contract game of Blackjack that can be deployed on the blockcha
 
 PLEASE READ BELOW BEFORE PLAYING THE GAME OR USING THIS CONTRACT.
 
-This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix (https://remix.ethereum.org). Remix Documentation: https://remix.readthedocs.io/en/latest/
+This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix: https://remix.ethereum.org. Remix Documentation: https://remix.readthedocs.io/en/latest/
 
-In the "Compler" tab, make sure the Compiler Version matches the contract (0.8.12 or greater), then click "Compile".
+In the "Compiler" tab, make sure the Compiler Version matches the contract (0.8.12 or greater), then click "Compile".
 
 NOTE: If not deployed on a testnet or mainnet, a local blockchain is needed to generate the random numbers used in this contract. Consider using Hardhat to deploy a local blockchain for testing: https://docs.openzeppelin.com/learn/deploying-and-interacting.
 
@@ -18,9 +18,9 @@ Enter between 1000 GWei and 10 Ether in the "Value" field and click the "StartNe
 
 Once a game is started, the invoking address is registered as the player.
 
-Player can then place a bet to begin the game (100 GWei < bet < 1 Ether).
+Player can then place a bet to begin the game round (100 GWei < bet < 1 Ether).
 
-NOTE: player must click "ShowTable" after each move to refresh the table info display.
+NOTE: Player must click "ShowTable" after each move to refresh the table info display.
 
 
 RULES:
@@ -29,7 +29,7 @@ This contract follows the regular rules of BlackJack: https://www.bicyclecards.c
 
   * Player hits/stands to beat dealer's hand by getting as close to 21 as possible.
 
-  * Dealer must Hit on and up to 16 and Stand on 17.
+  * Dealer must hit on and up to 16 and stand on 17.
   
   * Player can only double down on 9, 10, or 11.
 
@@ -49,4 +49,4 @@ This contract follows the regular rules of BlackJack: https://www.bicyclecards.c
 
 If a button is clicked to call a contract function and the contract does not respond, check the Terminal/Output section (bottom pane) of the window, where the contract will provide a reason or an error.
 
-DISCLOSURE: This contract uses a psuedo-random number generator that can be influenced by miners. Be careful when using this or a contract like this in a Casino Dapp for example, where real money is used. This contract protects against security issues like Re-Entrancy, and makes certain that only the player can use any of the functions in the game's interface. The contract has not been tested thoroughly enough to guarantee protection against other kinds of attacks. This repository is open to the public. Feel free to Fork and pull requests to help improve the code.
+DISCLOSURE: This contract uses a psuedo-random number generator that can be influenced by miners. Be careful when using this or a contract like this in a Casino Dapp for example, where real money is used. This contract protects against security issues like Re-Entrancy and forced payments through self destruct of another contract, and makes certain that only a player can use any of the functions in the game's interface. The contract has not been tested thoroughly enough to guarantee protection against all kinds of attacks. This repository is open to the public.
