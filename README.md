@@ -4,7 +4,7 @@ A Solidity smart contract game of Blackjack that can be deployed on the blockcha
 
 PLEASE READ BELOW BEFORE PLAYING THE GAME OR USING THIS CONTRACT.
 
-This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix: https://remix.ethereum.org. Remix Documentation: https://remix.readthedocs.io/en/latest/
+This contract can be tested on any Solidity IDE, but the one I used to create this contract was Remix: https://remix.ethereum.org. Remix Documentation: https://remix-ide.readthedocs.io/en/latest/
 
 In the "Compiler" tab, make sure the Compiler Version matches the contract (0.8.12 or greater), then click "Compile".
 
