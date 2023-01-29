@@ -14,11 +14,11 @@ In the "Deploy" tab, ensure "Environment" is set to Hardhat Provider, or any oth
 
 Deploy the contract.
 
-Enter between 1000 GWei and 10 Ether in the "Value" field and click the "StartNewGame" button in the contract.
+Enter a deposit amount greater than 1000 GWei and up to 10 Ether in the "Value" field and click the "StartNewGame" button in the contract (1000 GWei < deposit <= 10 Ether).
 
 Once a game is started, the invoking address is registered as the player.
 
-Player can then place a bet to begin the game round (100 GWei < bet < 1 Ether).
+Player can then place a bet to begin a game round (100 GWei <= bet <= 1 Ether).
 
 NOTE: Player must click "ShowTable" after each move to refresh the table info display.
 
